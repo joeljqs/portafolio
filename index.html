@@ -1,0 +1,492 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Joel Quispe Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: 'var(--bg)', surface: 'var(--surface)', surface2: 'var(--surface2)',
+          line: 'var(--line)', fg: 'var(--fg)', muted: 'var(--muted)',
+          accent: 'var(--accent)', accentfg: 'var(--accent-fg)',
+          warm: 'var(--warm)', coral: 'var(--coral)'
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          body: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  /* Layout: una sola página con bandas verticales (inicio, sobre mí, habilidades, proyectos, certificados, formación, contacto) y barra superior fija con scrollspy. */
+  :root {
+    --bg: #EDF0F5;
+    --surface: #FFFFFF;
+    --surface2: #DFE5EE;
+    --line: #C8D1DE;
+    --fg: #0F1B2D;
+    --muted: #46566C;
+    --accent: #1E4FB8;
+    --accent-fg: #FFFFFF;
+    --warm: #F59E0B;
+    --coral: #E0702B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A1220; --surface: #111C30; --surface2: #182740; --line: #263A5C;
+      --fg: #E8EEF7; --muted: #9FB0C8; --accent: #5B9BFF; --accent-fg: #06101F;
+      --warm: #F5B640; --coral: #F08A4B;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0A1220; --surface: #111C30; --surface2: #182740; --line: #263A5C;
+    --fg: #E8EEF7; --muted: #9FB0C8; --accent: #5B9BFF; --accent-fg: #06101F;
+    --warm: #F5B640; --coral: #F08A4B;
+    color-scheme: dark;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    z-index: 60; background: var(--bg);
+  }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; text-wrap: balance; letter-spacing: -0.02em; line-height: 1.1; }
+  .wrap {
+    max-width: 72rem; margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .band { padding-block: 5rem; scroll-margin-top: 4rem; }
+  .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .navlink { position: relative; padding: 0.4rem 0.2rem; color: var(--muted); font-weight: 500; transition: color .2s; }
+  .navlink:hover { color: var(--fg); }
+  .navlink.active { color: var(--fg); }
+  .navlink.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -0.2rem; height: 2px; border-radius: 2px; background: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.3rem; border-radius: 999px; font-weight: 600; transition: transform .2s, background .2s, border-color .2s; cursor: pointer; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: var(--accent-fg); }
+  .btn-ghost { border: 1.5px solid var(--line); color: var(--fg); background: var(--surface); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .btn-wa { background: #25D366; color: #062014; }
+  .chip { display: inline-flex; align-items: center; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.9rem; font-weight: 500; border: 1.5px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; transition: all .2s; }
+  .chip:hover { border-color: var(--accent); color: var(--fg); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+  .tag { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.74rem; padding: 0.15rem 0.55rem; border-radius: 6px; background: var(--surface2); color: var(--fg); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.25rem; }
+  .project { transition: transform .25s, border-color .25s; display: flex; flex-direction: column; overflow: hidden; }
+  .project:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .bar { height: 8px; border-radius: 999px; background: var(--surface2); overflow: hidden; }
+  .bar > span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--warm)); }
+  .tl { position: relative; padding-left: 1.75rem; border-left: 2px solid var(--line); }
+  .tl-item { position: relative; }
+  .tl-item::before { content: ""; position: absolute; left: calc(-1.75rem - 7px); top: 0.45rem; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+  .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.35; pointer-events: none; }
+  .fade { animation: rise .6s ease both; }
+  @keyframes rise { from { opacity: 0.001; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .wa-float {
+    position: fixed; z-index: 40;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.1rem; border-radius: 999px; font-weight: 600;
+    background: #25D366; color: #062014;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: translateY(-3px); }
+  #cert-grid { columns: 1; column-gap: 1.5rem; }
+  @media (min-width: 640px) { #cert-grid { columns: 2; } }
+  @media (min-width: 1024px) { #cert-grid { columns: 3; } }
+  .cert { display: block; width: 100%; text-align: left; overflow: hidden; cursor: pointer; padding: 0; margin-bottom: 1.5rem; break-inside: avoid; transition: transform .25s, border-color .25s; color: var(--fg); }
+  .cert:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .cert img { display: block; width: 100%; height: auto; max-width: 100%; background: #fff; }
+  .cert-info { display: flex; flex-direction: column; gap: 0.15rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
+  .cert-info span { color: var(--muted); font-size: 0.9rem; }
+  .lb {
+    position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center;
+    background: rgba(5, 10, 20, 0.88);
+    padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  }
+  .lb-inner { width: 100%; max-width: 52rem; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; min-height: 0; }
+  .lb-inner img { max-width: 100%; max-height: calc(100vh - 8rem); width: auto; height: auto; border-radius: 0.75rem; background: #fff; display: block; object-fit: contain; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .fade { animation: none; }
+    .btn, .project, .chip, .wa-float, .cert { transition: none; }
+  }
+  @media (max-width: 640px) { .band { padding-block: 3.5rem; } }
+</style>
+
+<header class="topbar">
+  <div class="wrap flex items-center justify-between h-16">
+    <a href="#inicio" class="font-display font-extrabold text-xl tracking-tight">joel<span class="text-accent">Quispe</span></a>
+    <nav class="hidden lg:flex items-center gap-5" id="nav-desktop" aria-label="Secciones"></nav>
+    <div class="flex items-center gap-2">
+      <button id="theme-btn" class="chip" type="button" aria-label="Cambiar tema">Tema</button>
+      <button id="menu-btn" class="chip lg:hidden" type="button" aria-expanded="false" aria-controls="nav-mobile">Menú</button>
+    </div>
+  </div>
+  <nav id="nav-mobile" class="lg:hidden" hidden aria-label="Secciones móvil" style="border-top:1px solid var(--line)">
+    <div class="wrap py-3 flex flex-col" id="nav-mobile-list"></div>
+  </nav>
+</header>
+
+<main>
+  <!-- Inicio -->
+  <section id="inicio" class="band relative overflow-hidden" style="padding-top:4rem">
+    <div class="blob" style="width:22rem;height:22rem;background:var(--accent);top:-6rem;right:-6rem"></div>
+    <div class="blob" style="width:16rem;height:16rem;background:var(--warm);bottom:-5rem;left:-4rem"></div>
+    <div class="wrap relative grid gap-12 lg:grid-cols-[1.25fr_1fr] items-center">
+      <div class="min-w-0 fade">
+        <p class="eyebrow mb-5">Data Analytics · BI · Desarrollo web · Redes</p>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold">Hola, soy Joel. Convierto tus ideas en una <span style="background:linear-gradient(transparent 62%, color-mix(in srgb, var(--warm) 55%, transparent) 62%)">realidad</span>.</h1>
+        <p class="mt-6 text-lg text-muted max-w-xl">Estudiante de 8.° ciclo de Ingeniería de Sistemas. Trabajo con SQL, Python y Power BI para analizar datos, y también desarrollo software y configuro redes. Busco prácticas preprofesionales donde aportar y seguir aprendiendo.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a data-wa href="#contacto" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+            Escríbeme por WhatsApp
+          </a>
+          <a href="#proyectos" class="btn btn-ghost">Ver proyectos
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="min-w-0 fade" style="animation-delay:.1s">
+        <div class="card p-6 sm:p-8 relative">
+          <div class="flex items-center gap-5">
+            <img src="img/joel.jpg" alt="Foto de Joel Quispe" width="96" height="96" class="rounded-full object-cover shrink-0" style="width:6rem;height:6rem;border:3px solid var(--accent)">
+            <div class="min-w-0">
+              <p class="font-display font-bold text-2xl">Joel Quispe</p>
+              <p class="text-muted text-sm">Villa El Salvador, Lima</p>
+            </div>
+          </div>
+          <p class="mt-6 inline-flex items-center gap-2 text-sm font-medium rounded-full px-3 py-1" style="background:var(--surface2)">
+            <span class="inline-block rounded-full" style="width:.55rem;height:.55rem;background:var(--accent)"></span>
+            Busco desarrollar, analizar y configurar
+          </p>
+          <dl class="mt-6 grid grid-cols-3 gap-4 text-center">
+            <div><dt class="text-xs text-muted">Ciclo</dt><dd class="font-display font-extrabold text-3xl">8.°</dd></div>
+            <div><dt class="text-xs text-muted">Proyectos</dt><dd class="font-display font-extrabold text-3xl">3</dd></div>
+            <div><dt class="text-xs text-muted">Cursos</dt><dd class="font-display font-extrabold text-3xl">8</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre mí -->
+  <section id="sobre-mi" class="band" style="background:var(--surface)">
+    <div class="wrap grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div class="min-w-0">
+        <p class="eyebrow mb-4">Sobre mí</p>
+        <h2 class="text-4xl sm:text-5xl font-bold">Datos ordenados, sistemas que funcionan.</h2>
+      </div>
+      <div class="min-w-0 space-y-5 text-muted text-lg">
+        <p>Soy estudiante del 8.° ciclo de Ingeniería de Sistemas en la Universidad Autónoma del Perú. Me interesan el análisis de datos y la Inteligencia de Negocios: tomar datos desordenados, limpiarlos y convertirlos en dashboards que ayuden a decidir.</p>
+        <p>También desarrollo software y manejo redes. He programado sistemas web con JavaScript, PHP y MySQL, y sé configurar routers, access points y cableado estructurado. Soy responsable y proactivo, aprendo rápido tecnologías nuevas y me gusta trabajar en equipo.</p>
+        <ul class="grid sm:grid-cols-2 gap-3 pt-2 text-fg text-base" id="facts"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Habilidades -->
+  <section id="habilidades" class="band">
+    <div class="wrap">
+      <p class="eyebrow mb-4">Habilidades</p>
+      <h2 class="text-4xl sm:text-5xl font-bold max-w-2xl">Las herramientas con las que trabajo.</h2>
+      <div class="mt-8 flex flex-wrap gap-2" id="skill-tabs" role="group" aria-label="Categorías de habilidades"></div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="skill-grid"></div>
+      <p class="mt-6 text-sm text-muted">Los porcentajes son mi propia valoración de dominio. Donde no hay porcentaje, son conocimientos que aplico en mis proyectos.</p>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" class="band" style="background:var(--surface)">
+    <div class="wrap">
+      <p class="eyebrow mb-4">Proyectos académicos</p>
+      <h2 class="text-4xl sm:text-5xl font-bold max-w-2xl">Lo que he construido en la universidad.</h2>
+      <div class="mt-8 flex flex-wrap gap-2" id="project-tabs" role="group" aria-label="Filtrar proyectos"></div>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="project-grid"></div>
+    </div>
+  </section>
+
+  <!-- Certificados -->
+  <section id="certificados" class="band">
+    <div class="wrap">
+      <p class="eyebrow mb-4">Certificados</p>
+      <h2 class="text-4xl sm:text-5xl font-bold max-w-2xl">Cursos y masterclass.</h2>
+      <p class="mt-4 text-muted max-w-xl">Toca un certificado para verlo en grande.</p>
+      <div class="mt-10" id="cert-grid"></div>
+    </div>
+  </section>
+
+  <!-- Formación -->
+  <section id="formacion" class="band" style="background:var(--surface)">
+    <div class="wrap grid gap-12 lg:grid-cols-[1fr_1.5fr]">
+      <div class="min-w-0">
+        <p class="eyebrow mb-4">Formación</p>
+        <h2 class="text-4xl sm:text-5xl font-bold">Dónde estudio y estudié.</h2>
+      </div>
+      <ol class="tl space-y-10 min-w-0" id="timeline"></ol>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="band">
+    <div class="wrap">
+      <div class="rounded-3xl p-8 sm:p-14" style="background:var(--accent);color:var(--accent-fg)">
+        <p class="eyebrow mb-4" style="color:var(--accent-fg);opacity:.8">Contacto</p>
+        <h2 class="text-4xl sm:text-6xl font-extrabold max-w-3xl">¿En que puedo ayudarte? Conversemos.</h2>
+        <p class="mt-5 text-lg max-w-xl" style="opacity:.9">Escríbeme por WhatsApp o por correo y te respondo.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a data-wa href="#contacto" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+            Escríbeme por WhatsApp
+          </a>
+          <span class="font-mono text-base rounded-xl px-4 py-3 select-all" style="background:var(--bg);color:var(--fg)" id="wa-number"></span>
+        </div>
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <span class="font-mono text-base sm:text-lg rounded-xl px-4 py-3 select-all break-all" style="background:var(--bg);color:var(--fg)" id="email-text">q.s.joel.j@gmail.com</span>
+          <button type="button" id="copy-email" class="btn" style="background:var(--bg);color:var(--fg)">Copiar correo</button>
+          <span id="copy-status" class="text-sm font-medium" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="py-8">
+  <div class="wrap flex flex-wrap items-center justify-between gap-3 text-sm text-muted">
+    <p>© <span id="year"></span> Joel Julian Quispe Sulca. Hecho con HTML, Tailwind CSS y JavaScript.</p>
+    <a href="#inicio" class="navlink">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<a data-wa href="#contacto" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbeme por WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+  <span class="hidden sm:inline">WhatsApp</span>
+</a>
+
+<div id="lightbox" class="lb" hidden role="dialog" aria-modal="true" aria-label="Certificado ampliado">
+  <div class="lb-inner">
+    <button type="button" id="lb-close" class="chip">Cerrar ✕</button>
+    <img id="lb-img" src="" alt="">
+    <p id="lb-cap" class="text-center text-sm" style="color:#E8EEF7"></p>
+  </div>
+</div>
+
+<script>
+  /* ====== Contenido (tomado de tu CV) ====== */
+  const DATA = {
+    sections: [
+      ['inicio', 'Inicio'], ['sobre-mi', 'Sobre mí'], ['habilidades', 'Habilidades'],
+      ['proyectos', 'Proyectos'], ['certificados', 'Certificados'], ['formacion', 'Formación'], ['contacto', 'Contacto']
+    ],
+    facts: [
+      ['Ubicación', 'Villa El Salvador, Lima'],
+      ['Idiomas', 'Inglés básico'],
+      ['Estudios', 'Ingeniería de Sistemas, 8.° ciclo'],
+      ['Busco', 'Prácticas preprofesionales']
+    ],
+    // [nombre, porcentaje]. Sin porcentaje = conocimiento sin nivel indicado.
+    skills: {
+      'Datos y BI': [['SQL', 50], ['Power BI', 40], ['Python', 50], ['Dashboards', 50], ['Análisis de datos', 40], ['Limpieza de datos', 40], ['ETL', 45], ['Microsoft Excel', 60], ['MongoDB']],
+      'Desarrollo': [['Java', 50], ['JavaScript'], ['PHP'], ['HTML5'], ['CSS3'], ['MySQL']],
+      'Redes': [['Cableado estructurado'], ['Configuración de routers'], ['Configuración de access points']]
+    },
+    projects: [
+      { name: 'Análisis de ventas', role: 'Analista de datos', cat: 'Datos', c1: '#1E4FB8', c2: '#F59E0B', text: 'Dashboard interactivo en Power BI con datos extraídos, transformados y modelados desde MongoDB. Incluye visualizaciones y KPIs para ver tendencias y apoyar decisiones.', tags: ['Power BI', 'MongoDB', 'KPIs'] },
+      { name: 'Predicción de maduración', role: 'Desarrollador de Machine Learning', cat: 'Datos', c1: '#0F766E', c2: '#1E4FB8', text: 'Modelo de Machine Learning que predice el estado de maduración de higos a partir de variables de entrada. Preparé los datos, entrené el modelo y evalué sus resultados.', tags: ['Machine Learning', 'Preparación de datos'] },
+      { name: 'Salud mental SRQ-18', role: 'Desarrollador web', cat: 'Web', c1: '#334155', c2: '#F59E0B', text: 'Sistema web para registrar y gestionar pacientes, con respuestas procesadas en JavaScript y PHP, base de datos MySQL e interpretación automática del cuestionario.', tags: ['JavaScript', 'PHP', 'MySQL'] }
+    ],
+    // Estudios, del más reciente al más antiguo.
+    jobs: [
+      { when: 'Marzo 2024 – Actualidad', role: 'Ingeniería de Sistemas, 8.° ciclo', org: 'Universidad Autónoma del Perú', text: 'Formación en análisis de datos, bases de datos, programación y redes. La complemento con cursos y masterclass de SQL, Python, Power BI, Java y Excel.' },
+      { when: 'Abril 2021 – Diciembre 2023', role: 'Ingeniería de Sistemas y Computación, 6.° ciclo', org: 'Universidad Peruana Los Andes (UPLA)', text: 'Seis ciclos cursados de la carrera.' }
+    ],
+    // WhatsApp: número con código de país y sin signos (51 = Perú).
+    whatsapp: {
+      phone: '51923079786',
+      display: '+51 923 079 786',
+      message: '¡Hola Joel! 👋 Vi tu portafolio y me gustó mucho tu trabajo. Me gustaría conversar contigo sobre una oportunidad. ¿Tienes un momento para hablar?'
+    },
+    // Imágenes en la carpeta certs/. w y h son el tamaño real de cada imagen.
+    certs: [
+      { img: 'certs/c1.jpg', w: 1075, h: 1519, title: 'Database Design and Programming with SQL', org: 'Universidad Autónoma del Perú', year: '2025', meta: 'Enero 2025' },
+      { img: 'certs/c4.jpg', w: 1075, h: 1519, title: 'Actualización en SQL Server 2022', org: 'Skill', year: '2024', meta: '56 horas · nota 18' },
+      { img: 'certs/c5.jpg', w: 1075, h: 1519, title: 'Actualización en Python 3.12', org: 'Skill', year: '2024', meta: '56 horas · nota 20' },
+      { img: 'certs/c8.jpg', w: 1075, h: 762, title: 'Power BI', org: 'Lima Educa', year: '2024', meta: '8 horas' },
+      { img: 'certs/c7.jpg', w: 1075, h: 762, title: 'Excel Profesional', org: 'Lima Educa', year: '2024', meta: '12 horas' },
+      { img: 'certs/c6.jpg', w: 1075, h: 762, title: 'Tablas Dinámicas y Dashboard en Excel', org: 'Lima Educa', year: '2024', meta: '12 horas' },
+      { img: 'certs/c2.jpg', w: 1075, h: 1519, title: 'Java Programming', org: 'Universidad Autónoma del Perú', year: '2024', meta: 'Agosto 2024' },
+      { img: 'certs/c3.jpg', w: 1075, h: 1519, title: 'Habilidades Digitales', org: 'Autónoma · Educación Continua', year: '2024', meta: '48 horas académicas' }
+    ]
+  };
+  /* ========================================= */
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // Navegación
+  const navD = $('#nav-desktop'), navM = $('#nav-mobile-list');
+  DATA.sections.forEach(([id, label]) => {
+    navD.insertAdjacentHTML('beforeend', `<a class="navlink" data-id="${id}" href="#${id}">${esc(label)}</a>`);
+    navM.insertAdjacentHTML('beforeend', `<a class="navlink py-2" data-id="${id}" href="#${id}">${esc(label)}</a>`);
+  });
+  const menuBtn = $('#menu-btn'), menu = $('#nav-mobile');
+  menuBtn.addEventListener('click', () => {
+    menu.hidden = !menu.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menu.hidden));
+  });
+  navM.addEventListener('click', (e) => { if (e.target.closest('a')) { menu.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); } });
+
+  // Scrollspy
+  const links = document.querySelectorAll('.navlink[data-id]');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) links.forEach((l) => l.classList.toggle('active', l.dataset.id === en.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  DATA.sections.forEach(([id]) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+
+  // Datos rápidos
+  $('#facts').innerHTML = DATA.facts.map(([k, v]) =>
+    `<li class="rounded-xl px-4 py-3" style="background:var(--bg);border:1px solid var(--line)"><span class="block text-xs font-mono uppercase tracking-widest text-muted">${esc(k)}</span>${esc(v)}</li>`).join('');
+
+  // Habilidades
+  const skillTabs = $('#skill-tabs'), skillGrid = $('#skill-grid');
+  let currentSkill = Object.keys(DATA.skills)[0];
+  function renderSkills() {
+    skillTabs.innerHTML = Object.keys(DATA.skills).map((k) =>
+      `<button type="button" class="chip" data-k="${esc(k)}" aria-pressed="${k === currentSkill}">${esc(k)}</button>`).join('');
+    skillGrid.innerHTML = DATA.skills[currentSkill].map(([name, pct]) => `
+      <div class="card p-5 flex flex-col justify-center gap-3 fade" style="min-height:5.5rem">
+        <div class="flex items-center justify-between gap-3">
+          <span class="font-medium min-w-0">${esc(name)}</span>
+          <span class="font-mono text-sm text-muted shrink-0">${pct ? pct + '%' : 'Conocimientos'}</span>
+        </div>
+        ${pct ? `<div class="bar" role="img" aria-label="${esc(name)}: ${pct} por ciento"><span style="width:${pct}%"></span></div>` : ''}
+      </div>`).join('');
+  }
+  skillTabs.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-k]');
+    if (b) { currentSkill = b.dataset.k; renderSkills(); }
+  });
+  renderSkills();
+
+  // Proyectos
+  const projTabs = $('#project-tabs'), projGrid = $('#project-grid');
+  const cats = ['Todos', ...new Set(DATA.projects.map((p) => p.cat))];
+  let currentCat = 'Todos';
+  const thumb = (p, i) => `
+    <svg viewBox="0 0 400 220" class="w-full block" style="max-width:100%" role="img" aria-label="Ilustración abstracta de ${esc(p.name)}">
+      <defs><linearGradient id="g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.c1}"/><stop offset="1" stop-color="${p.c2}"/></linearGradient></defs>
+      <rect width="400" height="220" fill="url(#g${i})"/>
+      <circle cx="${70 + i * 45}" cy="${60 + (i % 3) * 30}" r="${50 + (i % 2) * 20}" fill="#fff" fill-opacity=".16"/>
+      <circle cx="${330 - i * 20}" cy="${170 - (i % 2) * 30}" r="${70 - (i % 3) * 10}" fill="#fff" fill-opacity=".12"/>
+      <rect x="${120 + i * 10}" y="${70 + (i % 2) * 20}" width="160" height="90" rx="14" fill="#fff" fill-opacity=".9"/>
+      <rect x="${136 + i * 10}" y="${88 + (i % 2) * 20}" width="70" height="8" rx="4" fill="${p.c1}"/>
+      <rect x="${136 + i * 10}" y="${106 + (i % 2) * 20}" width="128" height="6" rx="3" fill="${p.c2}" fill-opacity=".55"/>
+      <rect x="${136 + i * 10}" y="${120 + (i % 2) * 20}" width="100" height="6" rx="3" fill="${p.c2}" fill-opacity=".35"/>
+    </svg>`;
+  function renderProjects() {
+    projTabs.innerHTML = cats.map((c) => `<button type="button" class="chip" data-c="${esc(c)}" aria-pressed="${c === currentCat}">${esc(c)}</button>`).join('');
+    projGrid.innerHTML = DATA.projects.map((p, i) => ({ p, i })).filter(({ p }) => currentCat === 'Todos' || p.cat === currentCat).map(({ p, i }) => `
+      <article class="card project fade">
+        ${thumb(p, i)}
+        <div class="p-6 flex flex-col gap-3 grow">
+          <div>
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-2xl font-bold">${esc(p.name)}</h3>
+              <span class="eyebrow" style="font-size:.7rem">${esc(p.cat)}</span>
+            </div>
+            <p class="font-mono text-xs text-muted mt-1">${esc(p.role)}</p>
+          </div>
+          <p class="text-muted">${esc(p.text)}</p>
+          <div class="flex flex-wrap gap-2 mt-auto pt-2">${p.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+        </div>
+      </article>`).join('');
+  }
+  projTabs.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-c]');
+    if (b) { currentCat = b.dataset.c; renderProjects(); }
+  });
+  renderProjects();
+
+  // Formación
+  $('#timeline').innerHTML = DATA.jobs.map((j) => `
+    <li class="tl-item min-w-0">
+      <p class="font-mono text-sm text-accent">${esc(j.when)}</p>
+      <h3 class="text-2xl font-bold mt-1">${esc(j.role)}</h3>
+      <p class="font-medium">${esc(j.org)}</p>
+      <p class="text-muted mt-2">${esc(j.text)}</p>
+    </li>`).join('');
+
+  // WhatsApp y correo
+  const waUrl = `https://wa.me/${DATA.whatsapp.phone}?text=${encodeURIComponent(DATA.whatsapp.message)}`;
+  document.querySelectorAll('[data-wa]').forEach((a) => { a.href = waUrl; });
+  $('#wa-number').textContent = DATA.whatsapp.display;
+  $('#copy-email').addEventListener('click', async () => {
+    const status = $('#copy-status'), text = $('#email-text').textContent;
+    try { await navigator.clipboard.writeText(text); status.textContent = 'Correo copiado'; }
+    catch (err) {
+      const r = document.createRange(); r.selectNodeContents($('#email-text'));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      status.textContent = 'Selecciona y copia el correo';
+    }
+    setTimeout(() => { status.textContent = ''; }, 2500);
+  });
+
+  // Certificados (imágenes + vista ampliada)
+  $('#cert-grid').innerHTML = DATA.certs.map((c, i) => `
+    <button type="button" class="cert card fade" data-i="${i}" aria-label="Ampliar certificado ${esc(c.title)}">
+      <img src="${esc(c.img)}" width="${c.w}" height="${c.h}" loading="lazy" alt="Certificado de ${esc(c.title)}, ${esc(c.org)}, ${esc(c.year)}">
+      <span class="cert-info"><strong class="font-display text-lg">${esc(c.title)}</strong><span>${esc(c.org)} · ${esc(c.year)}</span></span>
+    </button>`).join('');
+
+  const lb = $('#lightbox'); let lastFocus = null;
+  function openLb(i) {
+    const c = DATA.certs[i]; lastFocus = document.activeElement;
+    const img = $('#lb-img'); img.src = c.img; img.alt = `Certificado de ${c.title}, ${c.org}, ${c.year}`;
+    $('#lb-cap').textContent = `${c.title} · ${c.org} · ${c.meta}`;
+    lb.hidden = false; $('#lb-close').focus();
+  }
+  function closeLb() { lb.hidden = true; if (lastFocus) lastFocus.focus(); }
+  $('#cert-grid').addEventListener('click', (e) => { const b = e.target.closest('.cert'); if (b) openLb(Number(b.dataset.i)); });
+  $('#lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+
+  $('#year').textContent = new Date().getFullYear();
+
+  // Tema
+  const root = document.documentElement, themeBtn = $('#theme-btn');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const label = () => { themeBtn.textContent = isDark() ? '☀ Claro' : '☾ Oscuro'; };
+  try { const saved = localStorage.getItem('theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
+  label();
+  themeBtn.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+</script>
+
+</body></html>
