@@ -1,6 +1,9 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Joel Quispe Portfolio</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -108,32 +111,41 @@
     transition: transform .2s;
   }
   .wa-float:hover { transform: translateY(-3px); }
-  #cert-grid { columns: 1; column-gap: 1.5rem; }
-  @media (min-width: 640px) { #cert-grid { columns: 2; } }
-  @media (min-width: 1024px) { #cert-grid { columns: 3; } }
-  .cert { display: block; width: 100%; text-align: left; overflow: hidden; cursor: pointer; padding: 0; margin-bottom: 1.5rem; break-inside: avoid; transition: transform .25s, border-color .25s; color: var(--fg); }
-  .cert:hover { transform: translateY(-4px); border-color: var(--accent); }
-  .cert img { display: block; width: 100%; height: auto; max-width: 100%; background: #fff; }
-  .cert-info { display: flex; flex-direction: column; gap: 0.15rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
-  .cert-info span { color: var(--muted); font-size: 0.9rem; }
+  #cert-grid { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 640px) { #cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { #cert-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .cert { display: flex; flex-direction: column; width: 100%; min-width: 0; text-align: left; overflow: hidden; cursor: pointer; padding: 0; transition: transform .25s, border-color .25s, box-shadow .25s; color: var(--fg); }
+  .cert:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 14px 30px rgba(10, 18, 32, 0.18); }
+  .cert-frame { position: relative; display: block; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; background: var(--surface2); border-bottom: 1px solid var(--line); }
+  .cert-frame img { display: block; width: 100%; height: 100%; object-fit: cover; background: #fff; transition: transform .4s; }
+  .cert:hover .cert-frame img { transform: scale(1.04); }
+  .cert-zoom { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem 0.75rem 0.65rem; text-align: center; font-size: 0.85rem; font-weight: 600; color: #fff; background: linear-gradient(transparent, rgba(5, 10, 20, 0.8)); opacity: 0; transition: opacity .2s; }
+  .cert:hover .cert-zoom, .cert:focus-visible .cert-zoom { opacity: 1; }
+  @media (hover: none) { .cert-zoom { opacity: 1; } }
+  .cert-info { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 1.25rem 1.15rem; }
+  .cert-meta { color: var(--muted); font-size: 0.85rem; }
+  .cert-code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.72rem; color: var(--muted); }
   .lb {
     position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center;
     background: rgba(5, 10, 20, 0.88);
     padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   }
   .lb-inner { width: 100%; max-width: 52rem; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; min-height: 0; }
-  .lb-inner img { max-width: 100%; max-height: calc(100vh - 8rem); width: auto; height: auto; border-radius: 0.75rem; background: #fff; display: block; object-fit: contain; }
+  .lb-inner img { max-width: 100%; max-height: calc(100vh - 12rem); width: auto; height: auto; border-radius: 0.75rem; background: #fff; display: block; object-fit: contain; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .fade { animation: none; }
     .btn, .project, .chip, .wa-float, .cert { transition: none; }
   }
   @media (max-width: 640px) { .band { padding-block: 3.5rem; } }
+  [hidden] { display: none !important; }
 </style>
 
+</head>
+<body>
 <header class="topbar">
   <div class="wrap flex items-center justify-between h-16">
-    <a href="#inicio" class="font-display font-extrabold text-xl tracking-tight">joel<span class="text-accent">Quispe</span></a>
+    <a href="#inicio" class="font-display font-extrabold text-xl tracking-tight">joel<span class="text-accent">.quispe</span></a>
     <nav class="hidden lg:flex items-center gap-5" id="nav-desktop" aria-label="Secciones"></nav>
     <div class="flex items-center gap-2">
       <button id="theme-btn" class="chip" type="button" aria-label="Cambiar tema">Tema</button>
@@ -173,6 +185,7 @@
             <div class="min-w-0">
               <p class="font-display font-bold text-2xl">Joel Quispe</p>
               <p class="text-muted text-sm">Villa El Salvador, Lima</p>
+              <p id="student-code" class="font-mono text-xs text-muted mt-1" hidden></p>
             </div>
           </div>
           <p class="mt-6 inline-flex items-center gap-2 text-sm font-medium rounded-full px-3 py-1" style="background:var(--surface2)">
@@ -182,7 +195,7 @@
           <dl class="mt-6 grid grid-cols-3 gap-4 text-center">
             <div><dt class="text-xs text-muted">Ciclo</dt><dd class="font-display font-extrabold text-3xl">8.°</dd></div>
             <div><dt class="text-xs text-muted">Proyectos</dt><dd class="font-display font-extrabold text-3xl">3</dd></div>
-            <div><dt class="text-xs text-muted">Cursos</dt><dd class="font-display font-extrabold text-3xl">8</dd></div>
+            <div><dt class="text-xs text-muted">Cursos</dt><dd class="font-display font-extrabold text-3xl" id="stat-certs">14</dd></div>
           </dl>
         </div>
       </div>
@@ -230,8 +243,9 @@
     <div class="wrap">
       <p class="eyebrow mb-4">Certificados</p>
       <h2 class="text-4xl sm:text-5xl font-bold max-w-2xl">Cursos y masterclass.</h2>
-      <p class="mt-4 text-muted max-w-xl">Toca un certificado para verlo en grande.</p>
-      <div class="mt-10" id="cert-grid"></div>
+      <p class="mt-4 text-muted max-w-xl">Filtra por institución y toca un certificado para verlo completo.</p>
+      <div class="mt-8 flex flex-wrap gap-2" id="cert-tabs" role="group" aria-label="Filtrar certificados por institución"></div>
+      <div class="mt-8" id="cert-grid"></div>
     </div>
   </section>
 
@@ -284,9 +298,17 @@
 
 <div id="lightbox" class="lb" hidden role="dialog" aria-modal="true" aria-label="Certificado ampliado">
   <div class="lb-inner">
-    <button type="button" id="lb-close" class="chip">Cerrar ✕</button>
+    <div class="flex w-full items-center justify-between gap-3">
+      <span id="lb-count" class="font-mono text-sm" style="color:#9FB0C8"></span>
+      <button type="button" id="lb-close" class="chip">Cerrar ✕</button>
+    </div>
     <img id="lb-img" src="" alt="">
     <p id="lb-cap" class="text-center text-sm" style="color:#E8EEF7"></p>
+    <a id="lb-link" href="#" target="_blank" rel="noopener" class="text-sm font-medium underline" style="color:#9FC4FF" hidden>Ver insignia digital ↗</a>
+    <div class="flex gap-2">
+      <button type="button" id="lb-prev" class="chip">← Anterior</button>
+      <button type="button" id="lb-next" class="chip">Siguiente →</button>
+    </div>
   </div>
 </div>
 
@@ -297,6 +319,8 @@
       ['inicio', 'Inicio'], ['sobre-mi', 'Sobre mí'], ['habilidades', 'Habilidades'],
       ['proyectos', 'Proyectos'], ['certificados', 'Certificados'], ['formacion', 'Formación'], ['contacto', 'Contacto']
     ],
+    // Escribe aquí tu código de estudiante. Si lo dejas vacío, no se muestra.
+    studentCode: '',
     facts: [
       ['Ubicación', 'Villa El Salvador, Lima'],
       ['Idiomas', 'Inglés básico'],
@@ -326,15 +350,22 @@
       message: '¡Hola Joel! 👋 Vi tu portafolio y me gustó mucho tu trabajo. Me gustaría conversar contigo sobre una oportunidad. ¿Tienes un momento para hablar?'
     },
     // Imágenes en la carpeta certs/. w y h son el tamaño real de cada imagen.
+    // issuer = filtro. pos = zona de la imagen que se ve en la miniatura. code = código de verificación impreso en el certificado.
     certs: [
-      { img: 'certs/c1.jpg', w: 1075, h: 1519, title: 'Database Design and Programming with SQL', org: 'Universidad Autónoma del Perú', year: '2025', meta: 'Enero 2025' },
-      { img: 'certs/c4.jpg', w: 1075, h: 1519, title: 'Actualización en SQL Server 2022', org: 'Skill', year: '2024', meta: '56 horas · nota 18' },
-      { img: 'certs/c5.jpg', w: 1075, h: 1519, title: 'Actualización en Python 3.12', org: 'Skill', year: '2024', meta: '56 horas · nota 20' },
-      { img: 'certs/c8.jpg', w: 1075, h: 762, title: 'Power BI', org: 'Lima Educa', year: '2024', meta: '8 horas' },
-      { img: 'certs/c7.jpg', w: 1075, h: 762, title: 'Excel Profesional', org: 'Lima Educa', year: '2024', meta: '12 horas' },
-      { img: 'certs/c6.jpg', w: 1075, h: 762, title: 'Tablas Dinámicas y Dashboard en Excel', org: 'Lima Educa', year: '2024', meta: '12 horas' },
-      { img: 'certs/c2.jpg', w: 1075, h: 1519, title: 'Java Programming', org: 'Universidad Autónoma del Perú', year: '2024', meta: 'Agosto 2024' },
-      { img: 'certs/c3.jpg', w: 1075, h: 1519, title: 'Habilidades Digitales', org: 'Autónoma · Educación Continua', year: '2024', meta: '48 horas académicas' }
+      { img: 'certs/c14.jpg', w: 1210, h: 935, pos: '50% 50%', issuer: 'AWS', title: 'AWS Academy Graduate: Cloud Foundations', org: 'AWS Academy · Insignia de capacitación', year: '2026', meta: '20 horas · 10 de octubre de 2026', code: 'Insignia digital en Credly', link: 'https://www.credly.com/go/IXzrvGg0' },
+      { img: 'certs/c9.jpg', w: 1130, h: 740, pos: '10% 50%', issuer: 'AWS', title: 'Introduction to Amazon EC2 (Español LATAM)', org: 'AWS Training & Certification', year: '2026', meta: 'Completado el 26 de septiembre de 2026' },
+      { img: 'certs/c10.jpg', w: 1130, h: 740, pos: '10% 50%', issuer: 'AWS', title: 'Job Roles in the Cloud (Español LATAM)', org: 'AWS Training & Certification', year: '2026', meta: 'Completado el 26 de septiembre de 2026' },
+      { img: 'certs/c12.jpg', w: 1130, h: 740, pos: '10% 50%', issuer: 'AWS', title: 'Introduction to AWS IAM (Español LATAM)', org: 'AWS Training & Certification', year: '2026', meta: 'Completado el 25 de septiembre de 2026' },
+      { img: 'certs/c11.jpg', w: 1130, h: 740, pos: '10% 50%', issuer: 'AWS', title: 'Introduction to AWS IAM (Español de España)', org: 'AWS Training & Certification', year: '2026', meta: 'Completado el 25 de septiembre de 2026' },
+      { img: 'certs/c13.jpg', w: 1130, h: 740, pos: '10% 50%', issuer: 'AWS', title: 'AWS Billing and Cost Management (Español LATAM)', org: 'AWS Training & Certification', year: '2026', meta: 'Completado el 25 de septiembre de 2026' },
+      { img: 'certs/c1.jpg', w: 1075, h: 1519, pos: '50% 46%', issuer: 'Autónoma', title: 'Database Design and Programming with SQL', org: 'Universidad Autónoma del Perú', year: '2025', meta: 'Lima, 20 de enero de 2025', code: 'SIS-00138-2025' },
+      { img: 'certs/c4.jpg', w: 1075, h: 1519, pos: '50% 38%', issuer: 'Skill', title: 'Actualización en SQL Server 2022', org: 'Skill · Red Peruana de Capacitación', year: '2024', meta: '56 horas · nota 18', code: 'A24-CSQLS08-18' },
+      { img: 'certs/c5.jpg', w: 1075, h: 1519, pos: '50% 38%', issuer: 'Skill', title: 'Actualización en Python 3.12', org: 'Skill · Red Peruana de Capacitación', year: '2024', meta: '56 horas · nota 20', code: 'A24-PYTHON06-82' },
+      { img: 'certs/c8.jpg', w: 1075, h: 762, pos: '50% 40%', issuer: 'Lima Educa', title: 'Power BI', org: 'Lima Educa', year: '2024', meta: '8 horas · octubre 2024' },
+      { img: 'certs/c7.jpg', w: 1075, h: 762, pos: '50% 40%', issuer: 'Lima Educa', title: 'Excel Profesional', org: 'Lima Educa', year: '2024', meta: '12 horas · octubre 2024' },
+      { img: 'certs/c6.jpg', w: 1075, h: 762, pos: '50% 40%', issuer: 'Lima Educa', title: 'Tablas Dinámicas y Dashboard en Excel', org: 'Lima Educa', year: '2024', meta: '12 horas · octubre 2024' },
+      { img: 'certs/c2.jpg', w: 1075, h: 1519, pos: '50% 46%', issuer: 'Autónoma', title: 'Java Programming', org: 'Universidad Autónoma del Perú', year: '2024', meta: 'Lima, 27 de agosto de 2024', code: 'SIS-00817-2024' },
+      { img: 'certs/c3.jpg', w: 1075, h: 1519, pos: '50% 36%', issuer: 'Autónoma', title: 'Habilidades Digitales', org: 'Autónoma · Educación Continua', year: '2024', meta: '48 horas académicas', code: 'OEC-02982-2024' }
     ]
   };
   /* ========================================= */
@@ -365,7 +396,9 @@
   DATA.sections.forEach(([id]) => { const el = document.getElementById(id); if (el) spy.observe(el); });
 
   // Datos rápidos
-  $('#facts').innerHTML = DATA.facts.map(([k, v]) =>
+  const facts = DATA.studentCode ? [['Código de estudiante', DATA.studentCode], ...DATA.facts] : DATA.facts;
+  if (DATA.studentCode) { const sc = $('#student-code'); sc.textContent = 'Código de estudiante: ' + DATA.studentCode; sc.hidden = false; }
+  $('#facts').innerHTML = facts.map(([k, v]) =>
     `<li class="rounded-xl px-4 py-3" style="background:var(--bg);border:1px solid var(--line)"><span class="block text-xs font-mono uppercase tracking-widest text-muted">${esc(k)}</span>${esc(v)}</li>`).join('');
 
   // Habilidades
@@ -453,24 +486,65 @@
   });
 
   // Certificados (imágenes + vista ampliada)
-  $('#cert-grid').innerHTML = DATA.certs.map((c, i) => `
-    <button type="button" class="cert card fade" data-i="${i}" aria-label="Ampliar certificado ${esc(c.title)}">
-      <img src="${esc(c.img)}" width="${c.w}" height="${c.h}" loading="lazy" alt="Certificado de ${esc(c.title)}, ${esc(c.org)}, ${esc(c.year)}">
-      <span class="cert-info"><strong class="font-display text-lg">${esc(c.title)}</strong><span>${esc(c.org)} · ${esc(c.year)}</span></span>
-    </button>`).join('');
+  const certGrid = $('#cert-grid'), certTabs = $('#cert-tabs');
+  const issuers = ['Todos', ...new Set(DATA.certs.map((c) => c.issuer))];
+  let currentIssuer = 'Todos', visible = [];
+  function renderCerts() {
+    certTabs.innerHTML = issuers.map((k) => {
+      const n = k === 'Todos' ? DATA.certs.length : DATA.certs.filter((c) => c.issuer === k).length;
+      return `<button type="button" class="chip" data-k="${esc(k)}" aria-pressed="${k === currentIssuer}">${esc(k)} · ${n}</button>`;
+    }).join('');
+    visible = DATA.certs.map((c, i) => i).filter((i) => currentIssuer === 'Todos' || DATA.certs[i].issuer === currentIssuer);
+    certGrid.innerHTML = visible.map((i) => {
+      const c = DATA.certs[i];
+      return `
+      <button type="button" class="cert card fade" data-i="${i}" aria-label="Ver certificado ${esc(c.title)}">
+        <span class="cert-frame">
+          <img src="${esc(c.img)}" width="${c.w}" height="${c.h}" loading="lazy" style="object-position:${esc(c.pos)}" alt="Certificado de ${esc(c.title)}, ${esc(c.org)}, ${esc(c.year)}">
+          <span class="cert-zoom">Ver certificado</span>
+        </span>
+        <span class="cert-info">
+          <span class="flex items-center justify-between gap-2"><span class="tag">${esc(c.issuer)}</span><span class="font-mono text-xs text-muted">${esc(c.year)}</span></span>
+          <strong class="font-display text-lg leading-snug">${esc(c.title)}</strong>
+          <span class="cert-meta">${esc(c.meta)}</span>
+          ${c.code ? `<span class="cert-code">${c.link ? '' : 'Código '}${esc(c.code)}</span>` : ''}
+        </span>
+      </button>`;
+    }).join('');
+  }
+  certTabs.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-k]');
+    if (b) { currentIssuer = b.dataset.k; renderCerts(); }
+  });
+  renderCerts();
 
   const lb = $('#lightbox'); let lastFocus = null;
-  function openLb(i) {
-    const c = DATA.certs[i]; lastFocus = document.activeElement;
+  let pos = 0;
+  function showLb(p) {
+    pos = (p + visible.length) % visible.length;
+    const c = DATA.certs[visible[pos]];
     const img = $('#lb-img'); img.src = c.img; img.alt = `Certificado de ${c.title}, ${c.org}, ${c.year}`;
-    $('#lb-cap').textContent = `${c.title} · ${c.org} · ${c.meta}`;
+    $('#lb-cap').textContent = `${c.title} · ${c.org} · ${c.meta}${c.code && !c.link ? ' · Código ' + c.code : ''}`;
+    $('#lb-count').textContent = `${pos + 1} de ${visible.length}`;
+    const lk = $('#lb-link'); lk.hidden = !c.link; if (c.link) lk.href = c.link;
+  }
+  function openLb(i) {
+    lastFocus = document.activeElement;
+    showLb(Math.max(0, visible.indexOf(i)));
     lb.hidden = false; $('#lb-close').focus();
   }
   function closeLb() { lb.hidden = true; if (lastFocus) lastFocus.focus(); }
-  $('#cert-grid').addEventListener('click', (e) => { const b = e.target.closest('.cert'); if (b) openLb(Number(b.dataset.i)); });
+  certGrid.addEventListener('click', (e) => { const b = e.target.closest('.cert'); if (b) openLb(Number(b.dataset.i)); });
   $('#lb-close').addEventListener('click', closeLb);
+  $('#lb-prev').addEventListener('click', () => showLb(pos - 1));
+  $('#lb-next').addEventListener('click', () => showLb(pos + 1));
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+  document.addEventListener('keydown', (e) => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowLeft') showLb(pos - 1);
+    else if (e.key === 'ArrowRight') showLb(pos + 1);
+  });
 
   $('#year').textContent = new Date().getFullYear();
 
@@ -488,5 +562,5 @@
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
 </script>
-
-</body></html>
+</body>
+</html>
